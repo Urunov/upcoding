@@ -5,4 +5,4 @@ The link to the sixth edition: https://www.amazon.com/Cracking-Coding-Interview-
 
 The link to the solutions by the author: https://github.com/careercup/CtCI-6th-Edition
 
-Or you may use this link for online PDF: 
+Or you may use this link for [online PDF](https://github.com/Urunov/upcoding/tree/master/Resources) 
