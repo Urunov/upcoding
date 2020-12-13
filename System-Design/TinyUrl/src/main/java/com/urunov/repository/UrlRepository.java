@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface UrlRepository extends CrudRepository<UrlMapping, String> {
 
-    @Query("select * from UrlMap where oldUrl = ?0")
+    @Query("select* from UrlMap where oldUrl=?0")
     public UrlMapping findByOldUrl(String sOldUrl);
 
-    @Query("select * from UrlMap where email=?0 ALLOW Filtering")
+    @Query("select* from UrlMap where email=?0 ALLOW FILTERING")
     public List<UrlMapping> findByEmail(String email);
 }
