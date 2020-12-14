@@ -18,4 +18,6 @@ public interface UrlRepository extends CrudRepository<UrlMapping, String> {
 
     @Query("select* from UrlMap where email=?0 ALLOW FILTERING")
     public List<UrlMapping> findByEmail(String email);
+
+    UrlMapping findOne(String sNewUrl);
 }

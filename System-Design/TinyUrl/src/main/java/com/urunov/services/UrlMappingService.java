@@ -2,8 +2,9 @@ package com.urunov.services;
 
 import com.urunov.models.UrlMapping;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 
-import javax.persistence.Cacheable;
+
 import java.util.List;
 
 /**

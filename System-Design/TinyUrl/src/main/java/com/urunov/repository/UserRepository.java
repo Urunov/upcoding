@@ -9,4 +9,7 @@ import org.springframework.data.repository.CrudRepository;
  * Github: @urunov
  */
 public interface UserRepository extends CrudRepository<User, String> {
+    Boolean exists(String email);
+
+    User findOne(String email);
 }

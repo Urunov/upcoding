@@ -1,0 +1,27 @@
+<div class="jumbotron text-center">
+    <div class="signup-screen">
+      <div class="space-bot text-center">
+        <h1>Login</h1>
+        <div class="divider"></div>
+      </div>
+      <form >
+        <div class="input-field col s6">
+          <input id="email" type="email" name="email" ng-model="email" class="validate" required = "true" />
+          <label for="email">Email</label>
+        </div>
+        <p class="alert alert-danger" ng-show="form-register.email.$error.email">Your email is invalid.</p>
+        <div class="input-field col s6">
+          <input id="password" type="password" name="password" ng-model="password" ng-minlength='6' class="validate" required="true" />
+          <label for="password">Password</label>
+        </div>
+        <p class="alert alert-danger" ng-show="form-register.password.$error.minlength || form.password.$invalid">Your password must be at least 6 characters.</p>
+        <div class="space-top text-center">
+			<button type="submit" ng-click="login()" class="btn btn-success">Login</button>
+			<a class="btn btn-default" href="/api/google/login" target="_self">Google Login</a>
+        </div>
+      </form>
+      <div class="text-center nonRegisterText">
+        <a href="/api/register">Don't have an account? Register</a>
+      </div>
+    </div>
+</div>

@@ -56,10 +56,4 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         else
             return Arrays.asList(CreateKeyspaceSpecification.createKeyspace(getKeyspaceName()).ifNotExists());
     }
-
-
-
-
-
-
 }

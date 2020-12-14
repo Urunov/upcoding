@@ -1,0 +1,17 @@
+<div class="jumbotron jumbotron-fluid" ng-init="data()">
+	<div class="container">
+		<div class="row">	
+			<input type="text" name="Enter Long URL" ng-model="src"></input>
+			<input type="text" disabled="true" ng-model="output"></input>
+			<a class="btn blue" ng-click="generate()">Generate Tiny URL</a>
+
+			<table>
+			<tr ng-repeat="url in urls">
+					<td>{{ url.long }}</td>
+					<td>{{ url.tiny }}</td>
+				</tr>
+			</table>
+		</tr>
+	</div>
+</div>
+</div>

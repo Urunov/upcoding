@@ -1,0 +1,126 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.footer-block { margin: 20px 0; }
+
+#footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.space-bot{
+  margin-bottom: 35px;
+}
+
+.space-top{
+  margin-top: 35px;
+}
+
+/* Title */
+
+h1 {
+    color: white;
+    font-family: 'Roboto';
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nonRegisterText {
+    font-family: 'Roboto';
+    font-size: 18px;
+    color: white;
+    margin-top: 10px;
+    padding: 10px 0 0 0;
+}
+
+/* Sign Up */
+
+.alert-danger{
+	text-align: center;
+}
+
+.signup-screen {
+	  padding: 20px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+    background-color: #2c3940;
+    box-shadow: 0 1px 6px rgba(0,0,0,.3);
+    color: white;
+}
+
+.btn .cancel{
+  border-radius: 2px;
+  background-color: #df405a;
+}
+
+.btn .done{
+  border-radius: 2px;
+  background-color: #5CAB7D;
+}
+
+.btn .done:hover{
+  background-color: #6dc793;
+}
+
+.btn .done:focus{
+  background-color: #6dc793;
+}
+
+.btn .cancel:hover{
+  background-color: #f0435f;
+}
+
+.btn .cancel:focus{
+  background-color: #f0435f;
+}
+
+.input-group {
+    width:100%;
+}
+
+.input-group .ng-invalid {
+    border: 2px solid #e74c3c;
+    border-radius: 3px;
+}
+
+/* Error Box */
+
+.alert{
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  border-color: #e85a71;
+  background-color:  #e85a71;
+  color: white;
+}
+
+.help-block {
+    font-size: 10px;
+    color: white
+}
