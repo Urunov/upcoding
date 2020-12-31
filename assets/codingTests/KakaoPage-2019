@@ -1,0 +1,468 @@
+KakaoPage
+
+------ Task 1 -----
+Write a program that takes input of two sorted lists of integers A and B of size M and N respectively, and find the K'th smallest element in the union  of the two lists.
+The input comprises of an Integer M , followed by M more integers in next line. This is list A. Then comes an integer N followed by N more integers, this is list B.
+Last line of input has the number K, your program should output the K'th smallest element amongst the union.
+
+Notice. Don't use native sort method.
+주의. 언어에서 제공하는 기본 정렬(Sort) 함수를 사용하지 마세요.
+
+참고. 대부분의 정렬 알고리즘은 O(n logn) 복잡도를 가집니다. 정렬 알고리즘을 사용하지 말고 정답을 찾아보세요. 최적의 알고리즘은 O(n) 복잡도로 정답을 찾을 수 있습니다.
+ 
+
+Input: 
+5
+19 21 31 42 44
+12
+1 2 3 4 15 16 17 28 29 30 41 43
+8
+
+Output
+19
+
+Explanation: In the sorted union of the two lists, 19 is the 8th smallest number
+
+MySolution:
+/* package whatever; // don't place package name! */
+
+import java.io.*;
+
+class myCode
+{
+  public static void main (String[] args) throws java.lang.Exception
+  {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = br.readLine();
+    int M = Integer.parseInt(input);
+    input = br.readLine();
+    int[] m = parsedArray(input, M);
+    input = br.readLine();
+    int N = Integer.parseInt(input);
+    input = br.readLine();
+    int[] n = parsedArray(input, N);
+    input = br.readLine();
+    int target = Integer.parseInt(input);
+    
+    int i=0,j=0;
+    int result = 0;
+    while (i < M && j < N && target > 0 ) {
+      if (m[i] < n[j]) {
+        result = m[i];
+        i++;
+      } else {
+        result = n[j];
+        j++;
+      }
+      target--;
+    }
+    
+    if (target > 0) {
+      if (i == M) {
+        while (j < N && target > 0) {
+          result = n[j];
+          j++;
+          target--;
+        }
+      } else {
+        while (i < M && target > 0) {
+          result = m[i];
+          i++;
+          target--;
+        }
+      }
+    }
+    
+    System.out.println(result);
+  }
+  
+  public static int [] parsedArray(String str, int len) {
+    String [] strAr = str.split(" ");
+    int [] intAr = new int[len];
+    
+    for (int i = 0; i < len;i++) {
+      intAr[i] = Integer.parseInt(strAr[i]);
+    }
+    
+    return intAr;
+    
+  }
+}
+------------------------------------------------------
+
+
+--------- task 2 ------------
+Write a program that takes input of integer N, followed by N more integers. For each integer. Output the next fibonacci number after it.
+
+Fibonacci number: Any number that belongs to the fibonacci series.
+
+Constraints:
+
+Your program should run correctly for the first 60 Fibonacci Numbers
+
+Your output lines should not have any trailing or leading whitespaces
+
+Input
+4
+1
+9
+22
+1134903172
+
+Output
+2
+13
+34
+1836311903
+Explanation: 2 is the next fibonacci number greater than 1, the fibonacci number that comes after 9 is 13. 34 is the next fibonacci number after 2
+
+My Solution:
+
+/* package whatever; // don't place package name! */
+
+import java.io.*;
+
+class myCode
+{
+  public static void main (String[] args) throws java.lang.Exception
+  {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = br.readLine();
+    long N = Long.parseLong(input);
+    
+    long[] fib = buildFib(62);
+    for (long I = 0; I < N;I++) {
+      input = br.readLine();
+      long n = Long.parseLong(input);
+      System.out.println(nextFib(n, fib));
+    }
+  }
+  
+  public static long nextFib(long findNext, long[] fibAr) {
+    for (int i = 0;i < fibAr.length; i++) {
+      if (fibAr[i] > findNext) {
+        return fibAr[i];
+      }
+    }
+    
+    return fibAr[fibAr.length-1];
+  }
+  
+  public static long [] buildFib(int n) {
+    long [] fib = new long[n+2];
+    fib[0] = 0;
+    fib[1] = 1;
+    for (int i = 2; i < n;i++) {
+      fib[i] = fib[i-1] + fib[i-2];
+      //System.out.print(fib[i] + " ");
+    }
+    //System.out.println();
+    return fib;
+  }
+}
+
+---------------- Task 3 ----------------
+주어진 문자열에서 알파벳-숫자, 공백만을 이용하여 새로운 문자열로 만드세요. 새로 만들어지는 문자열은 원래 문자열 내에서의 순서를 유지해야 합니다. 단독 특수문자와 연결된 특수문자들은 모두 공백(스페이스)으로 치환되어야 합니다.
+단 정규표현식을 사용해서 풀지 마세요.
+
+For given string extract only alphanumeric characters and blanks. Order of characters must be kept as of original strings. Both Sole and concatenated non-alphanumeric charactres should be changed into single space.
+Do not use regular expression.
+
+Example : 
+첫 줄의 숫자는 문제의 개수 입니다. The number at first line is total number of following input lines.
+
+Input :
+2
+http://page.kakao.com/store
+abc123@is.my.id
+
+Output:
+http page kakao com store.
+abc123 is my id 
+
+ 
+MySolution:
+
+/* package whatever; // don't place package name! */
+
+import java.io.*;
+
+class myCode
+{
+    public static void main (String[] args) throws java.lang.Exception
+    {
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      String input = br.readLine();
+      int N = Integer.parseInt(input);
+      
+      for (int I = 0; I < N;I++) {
+        input = br.readLine();
+        System.out.println(construct(input));
+      }      
+    }
+  
+    public static String construct(String str) {
+      char [] chars = str.toCharArray();
+      
+      StringBuilder sb = new StringBuilder();
+      boolean flag = false;
+      for (int i = 0; i < chars.length ; i++) {
+        if (
+          (chars[i] >= 'a' && chars[i] <= 'z') ||
+          (chars[i] >= 'A' && chars[i] <= 'Z') ||
+          (chars[i] >= '0' && chars[i] <= '9')
+          ) {
+          sb.append(chars[i]);  
+          flag = false;
+        } else {
+          if (flag == false) {
+            sb.append(" ");
+            flag = true;
+          }
+            
+        }
+      }
+      
+      return sb.toString();
+      
+    }
+}
+
+
+----------- Task 4 -------------
+압축되어진 데이터를 원본 데이터로 압축을 풀고자 합니다
+
+데이터는 2-9 숫자, a-z A-Z 문자, [ ] 괄호로 이루어져 있습니다
+
+ 
+
+input의 형식은 다음과 같습니다
+
+1. 첫번째 줄에서는 M의 값을 입력받습니다. M은 두번째 줄부터 나올 문제의 개수입니다.
+2. 두번째 줄에서 부터 M개의 문자열(길이 L)이 제시됩니다
+3. 1 <= M <= 100
+4. 1 <= L <= 100
+
+ 
+
+압축을 푸는 룰은 다음과 같습니다
+
+1. n[(a-zA-Z로 이루어진 문자열)] : 영문대소문자로 이루어진 문자열 n개 반복, n은 한자리의 숫자이며 2 <= n <= 9를 만족합니다.
+
+2. 괄호 안의 텍스트에는 4[yyy] 와 같이 또다른 괄호가 들어갈 수가 있습니다. ex ) 2[xxx4[yyy]]
+
+ 
+
+주어진 input에 대하여 원본데이터를 output(출력)하시오
+
+input:
+
+4
+2[ab]
+2[ab3[cd]]
+2[ab]3[cd]
+3[a2[bc]d]
+
+output:
+
+abab
+abcdcdcdabcdcdcd
+ababcdcdcd
+abcbcdabcbcdabcbcd
+
+
+MySolution:
+
+/* package whatever; // don't place package name! */
+
+import java.io.*;
+
+class myCode
+{
+    public static void main (String[] args) throws java.lang.Exception
+    {
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      String input = br.readLine();
+      int N = Integer.parseInt(input);
+      for (int I = 0; I < N; I++) {
+        input = br.readLine();
+        System.out.println(decode(input));
+      }
+
+    }
+  
+    public static String decode(String txt) {
+      int txtLen = txt.length();
+      StringBuilder sb = new StringBuilder();
+      
+      for (int k = 0; k < txtLen; k++) {
+        //System.out.println("txt.charAt(k): " +  txt.charAt(k));
+        if ( '0' <= txt.charAt(k) && txt.charAt(k) <= '9' ) {
+          int n = txt.charAt(k) - '0';
+          
+          
+          k++;
+          int opened = 0;
+          if (txt.charAt(k) == '[') {
+            opened++;
+            k++;
+          } else {
+            System.out.println("something went wrong!");
+          }
+          
+          //System.out.println("subTxtIdx: " +  k);
+            
+          int subTxtIdx = k;
+          while (opened > 0) {
+            k++;
+            if (txt.charAt(k) == '[') opened++;
+            if (txt.charAt(k) == ']') opened--;
+          }
+          
+          // here we have k is pointing to ']' character
+          String decoded = decode(txt.substring(subTxtIdx, k));
+          
+          for (int i = 0; i < n; i++) {
+            sb.append(decoded);
+          }
+          
+        } else {
+          sb.append(txt.charAt(k));
+        }
+        
+      }
+      
+      return sb.toString();
+    }
+}
+
+
+
+------------- Task 5 -----------
+Problem Description
+
+Write a program that takes input of Integer N, followed by N more Lines. For each line, ouput True, if first word was matched by second pattern. The pattern is matching with support for '?' and '*'.
+
+Notice. Don't use native match method.
+주의. 언어에서 제공하는 기본 매칭(Matching) 함수를 사용하지 마세요.
+
+Input
+8
+coding *ing
+interview in*
+apple app?e
+vanilla vani?a
+banana ba*na
+fruits fru*its
+Love Love*
+Landvibe L*d?i*e
+
+Output
+True
+True
+True
+False
+True
+True
+True
+True
+
+MySolution:
+
+/* package whatever; // don't place package name! */
+
+import java.io.*;
+
+class myCode
+{
+  public static void main (String[] args) throws java.lang.Exception
+  {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = br.readLine();
+    
+    int N = Integer.parseInt(input);
+    for (int I = 0; I < N; I++) {
+      String str = br.readLine();
+      String [] textAndReg = str.split(" ");
+      String resultStr = (match(textAndReg[0], preProcessingRegEx(textAndReg[1])))? "True" : "False" ;
+      System.out.println(resultStr);
+      //System.out.println(str  + " -> " + resultStr);
+      
+    }
+    
+    
+  }
+  
+  public static String preProcessingRegEx(String regEx) {
+    StringBuilder sb = new StringBuilder();
+    boolean starFlag = false;
+    for (int i = 0; i < regEx.length() ;i++) {
+      char ch = regEx.charAt(i);
+      if (ch == '*') {
+        if (starFlag) {
+          continue;
+        } else {
+          sb.append(ch);
+          starFlag = true;
+        }
+        
+      } else {
+        sb.append(ch);
+        starFlag = false;
+      }
+    }
+    
+    return sb.toString();
+  }
+  
+  public static boolean match(String text, String regEx) {
+    
+    if (regEx.length() == 0 && text.length() > 0)
+      return false;
+    
+    if (regEx.length() == 0 && text.length() == 0)
+      return true;
+    
+    if (regEx.equals("*"))
+      return true;
+    
+    if (text.length() <= 0)
+      return false;
+    
+    if (regEx.charAt(0) == '*') {
+      char ch = regEx.charAt(1);
+      boolean resultFlag = false;
+      
+      //System.out.println("ch: " + ch);
+      for (int i = 0; i < text.length(); i++) {
+        if (text.charAt(i) == ch) {
+          resultFlag = resultFlag | match(text.substring(i), regEx.substring(1) );
+          //System.out.println("resultFlag: " + resultFlag);
+        }
+        
+      }
+      return resultFlag;
+    }
+    
+    if (regEx.charAt(0) == '?') {
+      //System.out.println("? case: " + regEx + " --> " + text);
+      return match(text.substring(1), regEx.substring(1));
+    }
+    
+    
+    
+    // regEx[0] is non * and ? case
+    if (regEx.charAt(0) == text.charAt(0)) {
+      //System.out.println("BegChars match case: " + regEx + " --> " + text);
+      return match(text.substring(1), regEx.substring(1));
+    } else {
+      return false;
+    }
+    
+    
+  }
+  
+  
+}
+
+
