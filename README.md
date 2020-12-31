@@ -1,4 +1,4 @@
-# Blog of rusyasoft.github.io
+# Blog of urunov.github.io/upcoding
 
 This blog of mine basically oriented to technology and some book reviews that I have read
 
